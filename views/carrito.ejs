@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head") %>
+  <link rel="stylesheet" href="/css/pages/carrito.css" />
+
+  <body>
+    <%- include("partials/header") %>
+    <main>
+      <section>
+        <h1>CARRITO DE COMPRAS</h1>
+        <div class="categoriasCarrito">
+          <h4>DETALLE DEL PRODUCTO</h4>
+          <h4>CANTIDAD</h4>
+          <h4>TOTAL</h4>
+        </div>
+      </section>
+      <section>
+        <ul id="cartItems">
+          <% cart.forEach(function(product, index) { %>
+          <li class="carritoItem1">
+            <div class="dataCarritoItem">
+              <picture>
+                <img
+                  src="<%= product.img_front %>"
+                  alt="<%= product.product_name %>"
+                  height="118px"
+                />
+              </picture>
+              <div>
+                <h3><%= product.product_name %></h3>
+                <h6><%= product.licence_name.toUpperCase() %></h6>
+                <br />
+                <p>precio: $<%= product.product_price %></p>
+              </div>
+            </div>
+            <div class="selectorCantidad">
+              <input type="number" value="1"/>
+              <div class="botonesCantidad">
+                <button class="btnMore">+</button>
+                <button class="btnLess">-</button>
+              </div>
+            </div>
+            <div class="total">
+              <p>$<%=product.product_price%></p>
+              <button
+                class="iconoEliminar"
+                data-product-id="<%= product.product_id%>">
+                <img
+                  src="/img/icons/delete_trash.svg"
+                  alt="Eliminar"
+                  width="28px"
+                  height="28px"
+                />
+              </button>
+            </div>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+      <section> 
+        <div class="resumen">
+          <span><h2>RESUMEN</h2></span>
+          <div class="resumenTabla">
+            <div class="displayResultados">
+              <p>CANTIDAD DE ELEMENTOS</p>
+              <p class="resultado">calcular</p>
+            </div>
+            <br />
+            <div class="displayResultados">
+              <p>SUBTOTAL</p>
+              <p class="resultado">calcular</p>
+            </div>
+            <br />
+            <div class="displayResultados lineaTotal">
+              <p>ENVÍO</p>
+              <p class="resultado">$ 0,00</p>
+            </div>
+            <br />
+            <div class="displayResultados">
+              <p>TOTAL</p>
+              <p class="resultado">calcular</p>
+            </div>
+          </div>
+          <button class="botonPagar">IR A PAGAR</button>
+        </div>
+      </section>
+    </main>
+    <%- include("partials/footer") %>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/carrito.js"></script>
+  </body>
+</html>

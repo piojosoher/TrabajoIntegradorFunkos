@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include("partials/head")%>
+
+    <body>
+        <%-include("partials/header")%>
+            <main id="shop" class="container">
+                <!--Inicio Barra Lateral-->
+                <aside class="shop__filters filters">
+                    <div class="filters__search">
+                        <label class="filters__title" for="search">BUSCAR</label>
+                        <input type="text" name="search" id="search" placeholder="Categoria/Licencia/Nombre"
+                            onChange="filtrar()">
+                    </div>
+                    <div class="filters__order">
+                        <label class="filters__title" for="orderby">ORDENAR POR</label>
+                        <select name="orderby" id="orderby" onChange="ordenar(this)">
+                            <option value="az" <% if(filtro.orden=="az" ){%>selected=true <%}%> >A-Z</option>
+                            <option value="za" <% if(filtro.orden=="za" ){%>selected=true <%}%> >Z-A</option>
+                            <option value="desc" <% if(filtro.orden=="desc" ){%>selected=true <%}%> >Mayor precio
+                            </option>
+                            <option value="asc" <% if(filtro.orden=="asc" ){%>selected=true <%}%> >Menor precio</option>
+                        </select>
+                    </div>
+                    <div class="filters__price">
+                        <span class="filters__title">PRECIO</span>
+                        <div>
+                            <label for="min">MIN</label>
+                            <input type="number" name="min" id="min" placeholder="0" onChange="filtrar()">
+                            <label for="max">MAX</label>
+                            <input type="number" name="max" id="max" placeholder="0" onChange="filtrar()">
+                        </div>
+                    </div>
+                    <div class="filters__checks">
+                        <span class="filters__title" for="filter">FILTRAR</span>
+                        <div>
+                            <input type="checkbox" name="filter" id="news" value="news" onclick="filtrar()">
+                            <label for="news">NUEVOS</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="filter" id="offers" value="offers" onclick="filtrar()">
+                            <label for="offers">OFERTA</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="filter" id="specials" value="specials" onclick="filtrar()">
+                            <label for="specials">EDICION ESPECIAL</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="filter" id="favs" value="favs" onclick="filtrar()">
+                            <label for="favs">FAVORITOS</label>
+                        </div>
+                    </div>
+                </aside>
+                <!--Fin Barra Lateral-->
+
+                <!--Bloque contenedor-->
+                <section class="shop__content">
+                    <% if (filtro.categoria!="" ) { %>
+                        <h1 style="font-size: 30px">
+                            <%=filtro.categoria%>
+                        </h1>
+                    <% } %>
+                    <% if (filtro.licencia!="" ) { %>
+                        <h1 style="font-size: 30px">
+                            <%=filtro.licencia%>
+                        </h1>
+                    <% } %>
+                    <ul class="shop__items">
+
+                        <% productos.forEach( producto=> { %>
+
+                            <li class="shop__item     
+                                <% if (producto.new) { %> filter_new <% } %>
+                                <% if (producto.sale) { %> filter_sale <% } %>
+                                <% if (producto.special_edition) { %> filter_special_edition <% } %>
+                                <% if (producto.favorite) { %> filter_favorite <% } %>
+                                " 
+                                value="<%=producto.product_price%>">
+                                <article class="card-item">
+                                    <a class="card-item__link"
+                                        href="/shop/item/<%=producto.product_id%>">
+                                    <picture class="card-item__cover">
+                                    <% if (producto.new || producto.sale ||
+                                           producto.special_edition || producto.favorite) { %>
+                                        <span class="card-item__tag">
+                                            <% if (producto.new) { %> Nuevo /<% } %>
+                                            <% if (producto.sale) { %> Oferta /<% } %>
+                                            <% if (producto.special_edition) {%> E.Especial /<% } %>
+                                            <% if (producto.favorite) {%> Favorito /<% } %>
+                                        </span>
+                                    <% } %>
+                                    <img class="card-item__img--front"
+                                         src=<%=producto.img_front%>
+                                         alt=<%=producto.product_description%>>
+                                    <img class="card-item__img--back"
+                                         src=<%=producto.img_back%>
+                                         alt=<%=producto.product_description%> "en caja">
+                                    </picture>
+                                    <div class="card-item__content">
+                                        <p class="card-item__licence">
+                                            <%=producto.licence_name%> - <%=producto.category_name%>
+                                        </p>
+                                        <h4 class="card-item__name">
+                                            <%=producto.product_name%>
+                                        </h4>
+                                        <p class="card-item__price">
+                                            <%=producto.product_price%>
+                                        </p>
+                                        <p class="card-item__promo">
+                                            <%=producto.dues%> CUOTAS SIN INTERES
+                                        </p>
+                                    </div>
+                                    </a>
+                                </article>
+                            </li>
+
+                        <% }); %>
+
+                    </ul>
+                    <!--Inicio Paginación-->
+                    
+                    <div class="pagination pagination_hide">
+                        <a class="pagination__link" href="#"><</a>
+                                           
+                            <a class="pagination__link pagination__link--selected" href="#">1</a>
+                            <a class="pagination__link" href="#">2</a>
+                            <a class="pagination__link" href="#">3</a>
+                            <a class="pagination__link" href="#">4</a>
+                            <a class="pagination__link" href="#">5</a>
+                            <a class="pagination__link" href="#">></a>
+                    </div><!--Fin Paginación-->
+                </section>
+            </main>
+            <%-include("partials/footer")%>
+
+                <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+                <script src="../../js/shop.js"></script>
+    </body>
+
+</html>

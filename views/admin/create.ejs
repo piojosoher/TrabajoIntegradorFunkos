@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include("../partials/head")%>
+<body>
+    <%-include("../partials/header_admin")%>
+    <main id="create" class="container">
+        <h2 class="create__title">CREATE NEW ITEM</h2>
+        <form class="create__form" action="/admin/create" method="POST" enctype="application/x-www-form-urlencoded">
+            <div class="form__flex">
+                <div class="form__box--flex">
+                    <label class="form__label" for="collection">Categoria:</label>
+                    <select class="form__select" name="collection" id="collection" required>
+                        <option value="" disabled selected hidden>Seleccionar</option>
+                        <option value="Figuras Coleccionables">Figuras Coleccionables</option>
+                        <option value="Llaveros">Llaveros</option>
+                        <option value="Remeras">Remeras</option>
+                    </select>
+                </div>
+                <div class="form__box--flex">
+                    <label class="form__label" for="collection">Licencias:</label>
+                    <select class="form__select" name="collection" id="collection" required>
+                        <option value="" disabled selected hidden>Seleccionar</option>
+                        <option value="starwars">Star Wars</option>
+                        <option value="pokemon">Pokemon</option>
+                        <option value="harrypotter">Harry Potter</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form__box--flex">
+                <label class="form__label" for="name">Product name:</label>
+                <input class="form__input" type="text" name="name" id="name" placeholder="Kakashi Hatake Shippuden Saga" required>
+            </div>
+            <div>
+                <textarea name="description" id="description" cols="30" rows="10" placeholder="Product description" required></textarea>
+            </div>
+            <div class="form__flex">
+                <div class="form__box--flex">
+                    <label class="form__label" for="sku">SKU:</label>
+                    <input class="form__input" type="text" name="sku" id="sku" placeholder="SSK111AB001" required>
+                </div>
+                <div class="form__box--flex">
+                    <label class="form__label" for="price">Price:</label>
+                    <div class="form__input-wrapper"><span>$</span><input class="form__input" type="text" name="price" id="price" data-type="currency" placeholder="0.000,00"></div>
+                </div>
+                <div class="form__box--flex">
+                    <label class="form__label" for="stock">Stock:</label>
+                    <div class="form__input-wrapper"><input class="form__input" type="text" name="stock" id="stock" placeholder="0" required><span>unidades</span></div>
+                </div>
+            </div>
+            <div class="form__flex">
+                <div class="form__box--flex">
+                    <label class="form__label" for="discount">Discount:</label>
+                    <div class="form__input--wrapper"><input class="form__input" type="text" name="discount" id="discount" placeholder="0" required><span>%</span></div>
+                </div>
+                <div class="form__box--flex">
+                    <label class="form__label" for="dues">Dues:</label>
+                    <select class="form__select" name="dues" id="dues">
+                        <option value="0">1 Payment</option>
+                        <option value="3">3 Interest Free Payments</option>
+                        <option value="6">6 Interest Free Payments</option>
+                        <option value="9">9 Interest Free Payments</option>
+                        <option value="12">12 Interest Free Payments</option>
+                        <option value="18">18 Interest Free Payments</option>
+                        <option value="24">24 Interest Free Payments</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form__box--flex">
+                <label class="form__label" for="images">Images:</label>
+                <input type="file" name="images" id="img" multiple>
+            </div>
+            <div class="form__flex">
+                <input class="form__btn btn btn--primary btn--large" type="submit" value="Add Product">
+                <input class="form__btn btn btn--primary btn--large" type="reset" value="Clear">
+            </div>
+        </form>
+    </main>
+    <%-include("../partials/footer")%>
+    
+</body>
+</html>

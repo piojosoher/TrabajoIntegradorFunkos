@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include("../partials/head")%>
+    <body>
+        <%-include("../partials/header_admin")%>
+        <main id="admin" class="container">
+            <section class="admin__search">
+                <iconify-icon class="admin__icon" icon="charm:search"></iconify-icon>
+                <input class="admin__search--bar" type="text" name="search" id="search" placeholder="codigo, nombre o categoria">
+            </section>
+            <section class="admin__list">
+                <div class="admin__header">
+                    <h2>LISTA DE PRODUCTOS</h2>
+                    <span>AGREGAR<a href="admin/create"><iconify-icon icon="bxs:plus-square" style="color: #f33;"></iconify-icon></a></span>
+                </div>
+                <div class="admin--table">
+                    <header class="admin--table__header">
+                        <h3>ID</h3>
+                        <h3>Codigo</h3>
+                        <h3>Product Name</h3>
+                        <h3>Category</h3>
+                    </header>
+
+                    <% productos.forEach( producto=> { %>
+
+                        <article class="admin--table__row">
+                            <p><%=producto.product_id%></p>
+                            <p><%=producto.product_sku%></p>
+                            <p><%=producto.product_name%></p>
+                            <p><%=producto.category_name%></p>
+                            <a href="/admin/edit/<%=producto.product_id%>"><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                            <a href="/admin/delete/<%=producto.product_id%>"><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                        </article>
+        
+
+                    <% }); %>
+
+                </div>
+            </section>
+        </main>
+        <%-include("../partials/footer")%>
+        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+      
+    </body>
+</html>

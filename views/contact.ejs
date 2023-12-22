@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include("partials/head")%>
+    <body>
+        <%-include("partials/header")%>
+        <main class="container" style="min-height: 41vh;">
+     
+            <h1 class="contactoTitulo">Contactanos</h1>
+        
+            <div class="formularioContacto" id="idFormularioMail">
+                <p class="col-md-12">¿Necesitás asesoramiento especializado?</p>
+                <p class="col-md-12">Completá tus datos y te contactaremos a la brevedad..</p>
+    
+                <!--form action="https://formsubmit.co/621938a6f9ff80ecb98a0f8a0c4a57a3" method="POST"-->
+                <form action="/contact" method="POST">
+    
+                    <div class="itemsMail-Container">
+    
+                    <!--label for="Nombre">Nombre</label-->
+                    <p class="itemMail">
+                        <input type="text" name="nombre" placeholder="Nombre" required>
+                    </p>
+    
+                    <!--label for="Apellido">Apellido</label-->
+                    <p class="itemMail">
+                        <input type="text" name="apellido" placeholder="Apellido" required>
+                    </p>
+    
+                    <!--label for="email">Correo Electronico</label-->
+                    <p class="itemMail">
+                        <input type="email" name="email" placeholder="Email" required>
+                    </p>
+    
+                    <!--label for="email">Correo Electronico</label-->
+                    <p class="itemMail">
+                        <input type="text" name="telefono" placeholder="Telefono" required>
+                    </p>
+    
+                    <!--label for="comments">Comentarios</label-->
+                    <p class="itemMailTexto">
+                        <textarea name="mensaje" placeholder="Mensaje/Consulta" cols="15" rows="5" required></textarea>
+                    </p>
+                
+                    <p class="itemMailBoton">
+                        <input type="submit" value="Enviar">
+                    </p>
+    
+                    </div>
+    
+                    <input type="hidden" name="_subject" value="Consulta desde TP-FSP-BIKE">
+                    <input type="hidden" name="_next" value="https://tp-fsn-grupo03.netlify.app/contact/Ok">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_replyto" value="true">
+                    <input type="hidden" name="_template" value="box">
+                    <input type="hidden" name="_autoresponse" value="Gracias por comunicarse con nosotros, a la brevedad nos estaremos contactando.">
+                </form>
+        
+           </div>
+       
+        </main>
+        <%-include("partials/footer")%>
+    </body>
+</html>
